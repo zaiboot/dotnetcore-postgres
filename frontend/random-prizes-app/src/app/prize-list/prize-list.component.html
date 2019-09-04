@@ -1,6 +1,6 @@
 
 <ul>
     <li  *ngFor="let p of prizeList">
-        {{p.description}}
+        <app-prize-info [prizeInfo]="p"></app-prize-info>
     </li>
 </ul>

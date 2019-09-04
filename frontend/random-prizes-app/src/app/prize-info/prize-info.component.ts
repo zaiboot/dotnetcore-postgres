@@ -1,17 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { PrizeInfo } from '../prize-info';
 
 
 @Component({
   selector: 'app-prize-info',
   templateUrl: './prize-info.component.html',
-  styleUrls: ['./prize-info.component.css']
+  styleUrls: ['./prize-info.component.css'],
+  //providers: [PrizeInfo]
 })
 
 
 export class PrizeInfoComponent implements OnInit {
-
-  constructor(private prizeInfo:PrizeInfo) { }
+  @Input()  prizeInfo:PrizeInfo
+  constructor() { }
 
   ngOnInit() {
   }
