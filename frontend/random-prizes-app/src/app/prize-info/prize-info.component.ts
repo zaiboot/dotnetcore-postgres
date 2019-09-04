@@ -1,11 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { PrizeInfo } from '../prize-info';
 
-enum Status {
-  Missed,
-  Available,
-  Unavailable,
-  Unknown
-}
 
 @Component({
   selector: 'app-prize-info',
@@ -15,14 +10,8 @@ enum Status {
 
 
 export class PrizeInfoComponent implements OnInit {
- 
-  status = Status.Unavailable
-  available = false
-  description = ""
-  private time = 60*5;
-  price = 10;
 
-  constructor() { }
+  constructor(private prizeInfo:PrizeInfo) { }
 
   ngOnInit() {
   }
