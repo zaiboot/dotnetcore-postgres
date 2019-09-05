@@ -1,3 +1,11 @@
-<span>Prize: {{prizeInfo.price}}</span>
-<span>Description: {{prizeInfo.description}}</span>
-<button>Claim Price</button>
+
+<div *ngIf="prizeInfo.IsAvailable()">
+    <div>Prize: {{prizeInfo.price}}</div>
+    <div>Description: {{prizeInfo.description}}</div>
+    <button class="btn btn-outline-primary mb-3">Claim Price</button>
+</div>
+
+
+<div *ngIf="!prizeInfo.IsAvailable()">
+    <span>Promotion not available</span>
+</div>

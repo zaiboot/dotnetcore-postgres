@@ -1,6 +1,7 @@
 
-<ul>
-    <li  *ngFor="let p of prizeList">
-        <app-prize-info [prizeInfo]="p"></app-prize-info>
+<ul style="border: thin solid black;padding: 5px;margin:10px; list-style: none;" >
+    <li style="width: 150px;min-height: 150px;float: left; margin: 5px; padding: 5px;border: thin solid black;"  *ngFor="let p of prizeList">
+        <app-prize-info style="min-height: 150px;" [prizeInfo]="p"></app-prize-info>
     </li>
 </ul>
+<div style="clear: both;"></div>
