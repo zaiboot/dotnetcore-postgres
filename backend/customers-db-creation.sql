@@ -16,6 +16,11 @@
 --SELECT * FROM customer;
 
 --SELECT c."Id", c."ClaimedAmount", c."CustomerName" FROM Customer AS c
---INSERT INTO customer(id, customername) values(1, 'WPN User'); -- default user no  data
+--INSERT INTO customer(customername) values('WPN User'); -- default user no  data
 
-SELECT * FROM customer;
+DROP TABLE IF EXISTS prize
+CREATE TABLE prize(
+    id SERIAL PRIMARY KEY,
+    amount REAL NOT NULL DEFAULT 0,
+    name VARCHAR(100) NOT NULL
+)
