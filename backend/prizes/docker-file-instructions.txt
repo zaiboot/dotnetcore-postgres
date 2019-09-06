@@ -1,0 +1,10 @@
+
+
+
+docker run -d -p 5432:5432 --name my-postgres -e POSTGRES_PASSWORD=Pg123$ postgres
+
+nmap localhost
+docker run -it --rm --name psql --link postsql1:postgres postgres psql -h postgres -U postgres
+
+
+docker run -it --rm --name psql --link locahost-pg:postgres postgres psql -h locahost -U postgres

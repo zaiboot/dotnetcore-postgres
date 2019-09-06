@@ -5,9 +5,9 @@ namespace prizes.Repository
 {
     public class CustomerRepository : ICustomerRepository
     {
-        private readonly ApiDataContext context;
+        private readonly CustomerDataContext context;
 
-        public CustomerRepository(ApiDataContext context)
+        public CustomerRepository(CustomerDataContext context)
         {
             this.context = context;
         }

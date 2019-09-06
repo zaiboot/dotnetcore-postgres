@@ -34,9 +34,9 @@
             services.AddOptions();
             services.Configure<PrizesSettings>(Configuration);
             
-            services.AddDbContextPool<ApiDataContext>(options =>
+            services.AddDbContextPool<CustomerDataContext>(options =>
             {               
-                options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection"));
+                options.UseNpgsql(Configuration.GetConnectionString("Customer"));
 
             });
         }

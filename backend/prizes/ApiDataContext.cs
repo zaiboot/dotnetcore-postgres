@@ -3,9 +3,9 @@ namespace prizes
     using Microsoft.EntityFrameworkCore;
     using prizes.Repository.DTO;
 
-    public class ApiDataContext : DbContext
+    public class CustomerDataContext : DbContext
     {
-        public ApiDataContext(DbContextOptions<ApiDataContext> options) : base(options)
+        public CustomerDataContext(DbContextOptions<CustomerDataContext> options) : base(options)
         {
         }
 
