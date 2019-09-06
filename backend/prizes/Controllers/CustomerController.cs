@@ -1,16 +1,19 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using prizes.Repository;
+using prizes.Repository.DTO;
+using Prizes.Api.Mapping;
 using Prizes.Models;
 
 namespace prizes.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CustomerController : ControllerBase, ICustomerController
+    public class CustomerController : PrizesControllerBase, ICustomerController
     {
         private readonly ICustomerRepository _customerRepository;
 
-        public CustomerController(ICustomerRepository customerRepository) //TODO: Add DI
+        public CustomerController(IMappingEngine mappingEngine, ILogger<PrizesControllerBase> logger, ICustomerRepository customerRepository) : base(mappingEngine, logger)
         {
             _customerRepository = customerRepository;
         }
@@ -20,7 +23,10 @@ namespace prizes.Controllers
         [HttpGet]
         public ActionResult<Customer> Get()
         {
-            return  _customerRepository.GetCustomerInformation(1);
+            var c = _customerRepository.GetCustomerInformation(1);
+            //Async calls needs to be resolved later.
+            // The main probleme here is the mapper not being async
+            return base._mappingEngine.Map<CustomerInformation,Customer>(c);
         }
 
     }
