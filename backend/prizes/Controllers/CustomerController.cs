@@ -17,16 +17,14 @@ namespace prizes.Controllers
         {
             _customerRepository = customerRepository;
         }
-
-
-        // GET api/values
+        
         [HttpGet]
         public ActionResult<Customer> Get()
         {
             var customerId = 1;            
             var c = _customerRepository.GetCustomerInformation(customerId);
             //Async calls needs to be resolved later.
-            // The main probleme here is the mapper not being async
+            // The main problem here is the mapper not being async
             return base._mappingEngine.Map<CustomerInformation,Customer>(c);
         }
 

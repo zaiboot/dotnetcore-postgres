@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { PrizeInfo } from '../prize-info';
+import { PrizeInfo } from '../models/prize-info';
 
 
 @Component({

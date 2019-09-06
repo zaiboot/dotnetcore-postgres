@@ -1,4 +1,4 @@
-import { PrizeInfo, Status } from './prize-info';
+import { PrizeInfo, Status } from './models/prize-info';
 
 describe('PrizeInfo', () => {
   it('should create an instance', () => {
