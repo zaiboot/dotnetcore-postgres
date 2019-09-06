@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { CustomerInformation } from '../models/customer-information';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class CustomerService {
 
   getCustomerInformation(id: number): Observable<CustomerInformation> {
 
-    let url = "https://localhost:5001/api/Customer"
+    let url =environment.customerApiUrl
     return this.httpClient
       .get<CustomerInformation>(url)
       .pipe(map((data: any) => {
