@@ -23,7 +23,9 @@ namespace prizes.Controllers
         [HttpGet]
         public ActionResult<Customer> Get()
         {
-            var c = _customerRepository.GetCustomerInformation(1);
+            var customerId = 1;
+            base._logger.LogInformation("Getting information for customer {0}", customerId);
+            var c = _customerRepository.GetCustomerInformation(customerId);
             //Async calls needs to be resolved later.
             // The main probleme here is the mapper not being async
             return base._mappingEngine.Map<CustomerInformation,Customer>(c);

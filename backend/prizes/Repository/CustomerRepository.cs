@@ -1,15 +1,19 @@
+using System.Linq;
 using prizes.Repository.DTO;
 
 namespace prizes.Repository
 {
     public class CustomerRepository : ICustomerRepository
     {
+        private readonly ApiDataContext context;
+
+        public CustomerRepository(ApiDataContext context)
+        {
+            this.context = context;
+        }
         public CustomerInformation GetCustomerInformation(int customerId)
         {
-            return new CustomerInformation {
-                CustomerName = "Edgar Madrigal",
-                ClaimedAmount= 10.5F
-            };
+            return context.Customer.First();
         }
     }
 }
