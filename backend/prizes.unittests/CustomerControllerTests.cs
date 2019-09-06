@@ -4,6 +4,8 @@ using prizes.Controllers;
 using Xunit;
 using Autofac.Extras.Moq;
 using prizes.Repository;
+using Prizes.Api.Mapping;
+using Microsoft.Extensions.Logging;
 
 namespace prizes.unittests
 {
@@ -13,7 +15,10 @@ namespace prizes.unittests
         private ICustomerController GivenTheSystemUnderTest(AutoMock mock){
             
             var mRepostorty = mock.Create<ICustomerRepository>();
-            return new CustomerController(mRepostorty);
+            var mLogger = mock.Create<ILogger<PrizesControllerBase> >();
+            var mMappingEngine = mock.Create<IMappingEngine >();
+            
+            return new CustomerController(mMappingEngine,mLogger,mRepostorty);
         }
         [Fact]
         public void CustomerIsNotNull()

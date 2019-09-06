@@ -2,8 +2,8 @@ namespace Prizes.Models
 {
     public class Customer
     {
-        public int Name { get; set; }
-        public int ClaimedAmount { get; set; }
+        public string Name { get; set; }
+        public float ClaimedAmount { get; set; }
 
     }
 

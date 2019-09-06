@@ -8,7 +8,8 @@ namespace Prizes.Api.Mapping.Profiles
     {
         public ApiProfile()
         {
-            CreateMap<CustomerInformation,Customer>();
+            CreateMap<CustomerInformation,Customer>()
+            .ForMember( c => c.Name, opt => opt.MapFrom( ci => ci.CustomerName) );
            
         }
     }

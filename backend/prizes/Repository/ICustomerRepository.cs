@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using prizes.Repository.DTO;
 
 namespace prizes.Repository
