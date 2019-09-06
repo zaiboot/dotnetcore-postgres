@@ -7,6 +7,7 @@ import { CustomerInfoComponent } from './customer-info/customer-info.component';
 import { PrizeInfoComponent } from './prize-info/prize-info.component';
 import { PrizeListComponent } from './prize-list/prize-list.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { HttpClientModule } from '@angular/common/http'
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgbModule
+    NgbModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

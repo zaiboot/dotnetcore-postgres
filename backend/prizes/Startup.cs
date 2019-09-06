@@ -39,6 +39,11 @@
                 options.UseNpgsql(Configuration.GetConnectionString("Customer"));
 
             });
+            services.AddCors( opt => {
+               opt.AddPolicy("orgy",
+                b => b.AllowAnyOrigin()
+               );
+            });
         }
 
         public void ConfigureContainer(ContainerBuilder builder)
@@ -98,7 +103,7 @@
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-
+            app.UseCors("orgy");
             app.UseHttpsRedirection();
             app.UseMvc();
             loggerFactory.AddLog4Net();

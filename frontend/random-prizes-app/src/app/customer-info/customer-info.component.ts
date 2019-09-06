@@ -9,12 +9,14 @@ import { CustomerInformation } from '../models/customer-information';
 })
 export class CustomerInfoComponent implements OnInit {
 
-  customerInfo: CustomerInformation
+  private customerInfo:CustomerInformation = new CustomerInformation
 
-  constructor(private service:CustomerService) { }
+  constructor(private service: CustomerService) { }
 
   ngOnInit() {
-    this.customerInfo = this.service.getCustomerInformation(1);
+    this.service.getCustomerInformation(1).subscribe(d => {
+      console.debug(d)
+      this.customerInfo = d})
   }
 
 }
