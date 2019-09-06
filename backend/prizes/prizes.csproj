@@ -11,6 +11,9 @@
   <Content Update="log4net.config">
     <CopyToOutputDirectory>Always</CopyToOutputDirectory>
   </Content>
+    <Content Update="appsettings.json">
+    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+  </Content>
 </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Autofac" Version="4.9.4" />

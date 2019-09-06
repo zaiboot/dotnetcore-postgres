@@ -36,7 +36,7 @@
             
             services.AddDbContextPool<ApiDataContext>(options =>
             {               
-                options.UseNpgsql(Configuration.GetConnectionString("ConnectionString"));
+                options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection"));
 
             });
         }
