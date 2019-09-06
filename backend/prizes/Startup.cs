@@ -33,9 +33,10 @@
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);            
             services.AddOptions();
             services.Configure<PrizesSettings>(Configuration);
+            
             services.AddDbContextPool<ApiDataContext>(options =>
             {               
-                options.UseNpgsql("");
+                options.UseNpgsql(Configuration.GetConnectionString("ConnectionString"));
 
             });
         }
