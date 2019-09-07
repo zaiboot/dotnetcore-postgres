@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace prizes.Repository.DTO
+namespace Prizes.Repository.DTO
 {
     // It appears postgre allows different cases for the tables
     // however when the case is not lower we have to wrap the object name with ""

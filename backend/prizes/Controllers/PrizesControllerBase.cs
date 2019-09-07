@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Prizes.Api.Mapping;
 
-namespace prizes.Controllers
+namespace Prizes.Controllers
 {
     //The idea here is to setup dependencies for all the controllers, like mappers
     // you will always load data from a specific datasources , now you need to return

@@ -1,6 +1,6 @@
-using prizes.Repository.DTO;
+using Prizes.Repository.DTO;
 
-namespace prizes.Repository
+namespace Prizes.Repository
 {
     public interface ICustomerRepository
     {

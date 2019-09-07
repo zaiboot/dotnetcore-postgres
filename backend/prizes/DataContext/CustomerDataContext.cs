@@ -1,7 +1,7 @@
-namespace prizes
+namespace Prizes.DataContext
 {
     using Microsoft.EntityFrameworkCore;
-    using prizes.Repository.DTO;
+    using Prizes.Repository.DTO;
 
     public class CustomerDataContext : DbContext
     {

@@ -1,13 +1,20 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Prizes.Models;
+using Prizes.Repository;
 
-namespace prizes.Controllers
+namespace Prizes.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class PrizesController : ControllerBase
+    public class PrizeController : ControllerBase
     {
+        private readonly IPrizeRepository prizeRepository;
+
+        public PrizeController(IPrizeRepository prizeRepository)
+        {
+            this.prizeRepository = prizeRepository;
+        }
         // GET api/values
         [HttpGet]
         public ActionResult<IEnumerable<Prize>> Get()

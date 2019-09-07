@@ -1,11 +1,11 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using prizes.Repository;
-using prizes.Repository.DTO;
+using Prizes.Repository;
+using Prizes.Repository.DTO;
 using Prizes.Api.Mapping;
 using Prizes.Models;
 
-namespace prizes.Controllers
+namespace Prizes.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

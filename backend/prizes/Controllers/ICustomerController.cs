@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Prizes.Models;
 
-namespace prizes.Controllers
+namespace Prizes.Controllers
 {
     public interface ICustomerController
     {

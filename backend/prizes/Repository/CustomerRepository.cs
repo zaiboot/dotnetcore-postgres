@@ -1,7 +1,8 @@
 using System.Linq;
-using prizes.Repository.DTO;
+using Prizes.DataContext;
+using Prizes.Repository.DTO;
 
-namespace prizes.Repository
+namespace Prizes.Repository
 {
     public class CustomerRepository : ICustomerRepository
     {

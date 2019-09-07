@@ -11,10 +11,11 @@
     using System.Reflection;
     using Microsoft.Extensions.Logging;
     using System.Collections.Generic;
-    using prizes.Repository;
+    using Prizes.Repository;
     using Prizes.Api.Settings;
     using Microsoft.Extensions.Options;
     using Microsoft.EntityFrameworkCore;
+    using Prizes.DataContext;
 
     public class Startup
     {
