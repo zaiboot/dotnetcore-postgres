@@ -27,27 +27,39 @@ namespace Prizes.Controllers
         }
 
         // POST api/values
-        [HttpPut]
-        public void SetStatus([FromBody] PrizeStatusUpdateRequest prize)
-        {
-            var currentPrize = this._prizeRepository.GetPrize(prize.Id);
-            switch (prize.NewStatus)
-            {
-                case Status.Available:
-                    break;
-                case Status.Missed:
-                    break;
-                case Status.Unavailable:
-                    break;
-                case Status.Unknown:
-                    break;
+        // [HttpPut]
+        // public ActionResult SetStatus([FromBody] PrizeStatusUpdateRequest prize)
+        // {
+        //     ActionResult operationResult;
+        //     var currentPrize = this._prizeRepository.GetPrize(prize.Id);
+        //     switch (prize.NewStatus)
+        //     {
+        //         case Status.Available:
+        //             if (currentPrize.Status == Status.Unavailable)
+        //             {
+        //                 currentPrize.Status = Status.Available;
+        //             }
+        //             //If the current status is 'Unavailable' all good,
+        //             //else we are getting a hack to reenable a promotion or something different.
+        //             operationResult = Forbid();
+        //             return operationResult;
+        //             break;
+        //         case Status.Missed:
+        //             //Doesn't matter the previous status. We need to disable the promotion
+        //             // provided the time differente has been set 
+        //             currentPrize.Status = Status.Missed;
+        //             break;
+        //         case Status.Unavailable:
+        //             break;
+        //         case Status.Unknown:
+        //             break;
 
-            }
+        //     }
 
-            //then mark it as available
+        //     //then mark it as available
 
 
-        }
+        // }
 
     }
 }
