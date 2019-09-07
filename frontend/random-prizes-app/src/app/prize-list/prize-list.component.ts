@@ -13,7 +13,10 @@ export class PrizeListComponent implements OnInit {
   constructor(private prizesService:PrizesService) { }
 
   ngOnInit() {
-    this.prizeList = this.prizesService.getPrizes()
+    this.prizesService.getPrizes().subscribe( p=> {
+      this.prizeList = p
+      this.prizeList[0].SetAvailable()
+    })
   }
 
 }

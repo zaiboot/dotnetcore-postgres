@@ -15,7 +15,7 @@ export class CustomerInfoComponent implements OnInit {
 
   ngOnInit() {
     this.service.getCustomerInformation(1).subscribe(d => {
-      console.debug(d)
+      
       this.customerInfo = d})
   }
 
