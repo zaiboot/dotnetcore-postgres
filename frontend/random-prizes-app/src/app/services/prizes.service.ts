@@ -10,15 +10,25 @@ import { map } from 'rxjs/operators';
 })
 export class PrizesService {
 
+  url = environment.prizeApiUrl
   constructor(private httpClient: HttpClient) { }
+
+
+  MarkAvailable(p: PrizeInfo): Observable<any> {
+
+    p.SetAvailable()
+    return this.httpClient
+      .put(this.url, p);
+
+  }
 
   getPrizes(): Observable<PrizeInfo[]> {
 
-    let url = environment.prizeApiUrl
+
     return this.httpClient
-      .get<PrizeInfo[]>(url)
-      .pipe(map( (data: any) => {
-          return data.map((p) => new PrizeInfo(Status.Unavailable, p['description'], p["amount"]) )        
+      .get<PrizeInfo[]>(this.url)
+      .pipe(map((data: any) => {
+        return data.map((p) => new PrizeInfo(Status.Unavailable, p['description'], p["amount"], p["Id"]))
       })
       );
   }

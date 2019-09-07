@@ -18,22 +18,36 @@ namespace Prizes.Controllers
             this._prizeRepository = prizeRepository;
         }
 
-        
+
         [HttpGet]
         public ActionResult<List<Prize>> Get()
         {
-            var result =  _mappingEngine.Map<IEnumerable<Prizes.DTO.Prize>,List<Prize>>( this._prizeRepository.GetPrizes());
+            var result = _mappingEngine.Map<IEnumerable<Prizes.DTO.Prize>, List<Prize>>(this._prizeRepository.GetPrizes());
             return result;
         }
 
         // POST api/values
-        [HttpPost("{id}/Claim")]
-        public void Claim(int id)
+        [HttpPut]
+        public void SetStatus([FromBody] PrizeStatusUpdateRequest prize)
         {
-            //TODO: Validate prize is still available
-            //then mark it as claimed
+            var currentPrize = this._prizeRepository.GetPrize(prize.Id);
+            switch (prize.NewStatus)
+            {
+                case Status.Available:
+                    break;
+                case Status.Missed:
+                    break;
+                case Status.Unavailable:
+                    break;
+                case Status.Unknown:
+                    break;
 
-        }        
+            }
+
+            //then mark it as available
+
+
+        }
 
     }
 }

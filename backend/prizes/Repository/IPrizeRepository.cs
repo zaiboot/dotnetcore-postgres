@@ -6,5 +6,6 @@ namespace Prizes.Repository
     public interface IPrizeRepository
     {
         IEnumerable<Prize> GetPrizes();
+        Prize GetPrize(int id);
     }
 }

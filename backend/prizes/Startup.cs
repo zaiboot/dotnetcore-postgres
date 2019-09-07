@@ -11,8 +11,6 @@
     using System.Reflection;
     using Microsoft.Extensions.Logging;
     using System.Collections.Generic;
-    using Prizes.Repository;
-    using Prizes.Api.Settings;
     using Microsoft.Extensions.Options;
     using Microsoft.EntityFrameworkCore;
     using Prizes.DataContext;
@@ -33,13 +31,6 @@
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddOptions();
-            services.Configure<PrizesSettings>(Configuration);
-
-            services.AddDbContextPool<CustomerDataContext>(options =>
-            {
-                options.UseNpgsql(Configuration.GetConnectionString("Customer"));
-
-            });
             services.AddDbContextPool<PrizesDataContext>(options =>
             {
                 options.UseNpgsql(Configuration.GetConnectionString("Prizes"));
@@ -66,23 +57,8 @@
                 .AsImplementedInterfaces();
             builder.RegisterType<GlobalExceptionFilter>();
 
-
-            #region REPOSITORY
-
-            builder.RegisterAssemblyTypes(
-                Assembly.GetAssembly(typeof(ICustomerRepository)))
-                .Where(t => t.Name.EndsWith("Repository"))
-                .AsImplementedInterfaces();
-
-            #endregion
-
             #region COMMON
-
-            builder.Register(ctx =>
-             {
-                 var options = ctx.Resolve<IOptions<PrizesSettings>>();
-                 return options.Value;
-             }).InstancePerLifetimeScope();
+           
             builder.Register(ctx =>
             {
                 var logger = ctx.Resolve<ILogger<MappingEngine>>();

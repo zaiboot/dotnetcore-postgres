@@ -15,7 +15,11 @@ export class PrizeListComponent implements OnInit {
   ngOnInit() {
     this.prizesService.getPrizes().subscribe( p=> {
       this.prizeList = p
-      this.prizeList[0].SetAvailable()
+      this.prizesService.MarkAvailable(this.prizeList[0]).subscribe( p=> {
+        this.prizeList[0].SetAvailable()
+      })
+
+      
     })
   }
 

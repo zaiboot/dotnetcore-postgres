@@ -8,7 +8,7 @@ export enum Status {
 export class PrizeInfo {
     private expiration = 60*5 //minutes
 
-    constructor(private status:Status,public description:string, public price:number){
+    constructor(private status:Status,public description:string, public price:number, public id:number){
     }
 
     SetAvailable(){

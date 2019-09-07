@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Prizes.DataContext;
 using Prizes.DTO;
 
@@ -12,6 +13,12 @@ namespace Prizes.Repository
         {
             this._ctx = ctx;
         }
+
+        public Prize GetPrize(int id)
+        {
+            return this._ctx.Prizes.First( p => p.Id == id);
+        }
+
         public IEnumerable<Prize> GetPrizes()
         {
             return this._ctx.Prizes;
