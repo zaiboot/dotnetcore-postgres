@@ -26,24 +26,31 @@
             Configuration = configuration;
         }
 
-        
+
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);            
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddOptions();
             services.Configure<PrizesSettings>(Configuration);
-            
+
             services.AddDbContextPool<CustomerDataContext>(options =>
-            {               
+            {
                 options.UseNpgsql(Configuration.GetConnectionString("Customer"));
 
             });
-            services.AddCors( opt => {
-               opt.AddPolicy("orgy",
-                b => b.AllowAnyOrigin()
-               );
+            services.AddDbContextPool<PrizesDataContext>(options =>
+            {
+                options.UseNpgsql(Configuration.GetConnectionString("Prizes"));
+            });
+
+
+            services.AddCors(opt =>
+            {
+                opt.AddPolicy("orgy",
+                 b => b.AllowAnyOrigin()
+                );
             });
         }
 
@@ -70,12 +77,12 @@
             #endregion
 
             #region COMMON
-           
-           builder.Register(ctx =>
-            {
-                var options = ctx.Resolve<IOptions<PrizesSettings>>();
-                return options.Value;
-            }).InstancePerLifetimeScope();
+
+            builder.Register(ctx =>
+             {
+                 var options = ctx.Resolve<IOptions<PrizesSettings>>();
+                 return options.Value;
+             }).InstancePerLifetimeScope();
             builder.Register(ctx =>
             {
                 var logger = ctx.Resolve<ILogger<MappingEngine>>();

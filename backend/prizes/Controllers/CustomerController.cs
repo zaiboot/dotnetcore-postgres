@@ -9,11 +9,11 @@ namespace Prizes.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CustomerController : PrizesControllerBase, ICustomerController
+    public class CustomerController : PrizesAppControllerBase, ICustomerController
     {
         private readonly ICustomerRepository _customerRepository;
 
-        public CustomerController(IMappingEngine mappingEngine, ILogger<PrizesControllerBase> logger, ICustomerRepository customerRepository) : base(mappingEngine, logger)
+        public CustomerController(IMappingEngine mappingEngine, ILogger<PrizesAppControllerBase> logger, ICustomerRepository customerRepository) : base(mappingEngine, logger)
         {
             _customerRepository = customerRepository;
         }

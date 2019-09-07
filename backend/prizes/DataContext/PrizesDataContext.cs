@@ -5,7 +5,7 @@ namespace Prizes.DataContext
 
     public class PrizesDataContext : DbContext
     {
-        public PrizesDataContext(DbContextOptions<CustomerDataContext> options) : base(options)
+        public PrizesDataContext(DbContextOptions options) : base(options)
         {
         }
         

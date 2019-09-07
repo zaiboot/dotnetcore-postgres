@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics.CodeAnalysis;
 using Autofac.Extras.Moq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -7,6 +8,7 @@ using Prizes.Api.Mapping;
 
 namespace Prizes.unittests
 {
+    [ExcludeFromCodeCoverage]
     public abstract class BaseTest<TController> where TController : ControllerBase
     {
 

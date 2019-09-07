@@ -11,6 +11,9 @@ namespace Prizes.Api.Mapping.Profiles
             CreateMap<CustomerInformation,Customer>()
             .ForMember( c => c.Name, opt => opt.MapFrom( ci => ci.CustomerName) );
            
+           CreateMap<Prizes.DTO.Prize, Prize>()
+            .ForMember( p => p.Description, opt => opt.MapFrom( mp => mp.Name ) );
+           ;
         }
     }
 }
