@@ -8,7 +8,7 @@ using Moq;
 using Prizes.Repository.DTO;
 using Prizes.Models;
 
-namespace Prizes.unittests
+namespace Prizes.UnitTests
 {
     [ExcludeFromCodeCoverage]
     public class CustomerControllerTests : BaseTest<CustomerController>

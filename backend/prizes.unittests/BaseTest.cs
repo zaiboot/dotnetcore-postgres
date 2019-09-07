@@ -6,7 +6,7 @@ using Microsoft.Extensions.Logging;
 using Moq;
 using Prizes.Api.Mapping;
 
-namespace Prizes.unittests
+namespace Prizes.UnitTests
 {
     [ExcludeFromCodeCoverage]
     public abstract class BaseTest<TController> where TController : ControllerBase

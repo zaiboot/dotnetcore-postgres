@@ -8,7 +8,7 @@ using System.Linq;
 using System.Collections.Generic;
 using Prizes.DTO;
 
-namespace Prizes.unittests
+namespace Prizes.UnitTests
 {
     [ExcludeFromCodeCoverage]
     public class PrizeControllerTests : BaseTest<PrizeController>
