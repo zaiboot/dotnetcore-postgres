@@ -1,13 +1,14 @@
 using System;
 using System.Diagnostics.CodeAnalysis;
 using Autofac.Extras.Moq;
+using Customers.Api.Mapping;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Moq;
-using Prizes.Api.Mapping;
 
-namespace Prizes.UnitTests
+namespace Customers.UnitTests
 {
+    //this is a good candidate for a nuget package.
     [ExcludeFromCodeCoverage]
     public abstract class BaseTest<TController> where TController : ControllerBase
     {
@@ -32,8 +33,6 @@ namespace Prizes.UnitTests
         }
         private void AndISetUpLog(AutoMock mock, LogLevel logLevel)
         {
-            //Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception exception, Func<TState, Exception, string> formatter);
-            // ILogger.Log<Object>(Information, 0, [[0, 1], [{OriginalFormat}, Getting information for customer {0}]], null, System.Func`3[System.Object,System.Exception,
             mock.Mock<ILogger<TController>>().Setup(l => l.Log(
                 It.Is<LogLevel>(ll => ll == logLevel),
                 It.IsAny<EventId>(),

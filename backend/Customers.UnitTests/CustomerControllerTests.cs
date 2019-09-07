@@ -1,14 +1,14 @@
 using System;
 using System.Diagnostics.CodeAnalysis;
-using Prizes.Controllers;
 using Xunit;
 using Autofac.Extras.Moq;
-using Prizes.Repository;
 using Moq;
-using Prizes.Repository.DTO;
-using Prizes.Models;
+using Customers.Controllers;
+using Customers.Models;
+using Customers.Repository;
+using Customers.Repository.DTO;
 
-namespace Prizes.UnitTests
+namespace Customers.UnitTests
 {
     [ExcludeFromCodeCoverage]
     public class CustomerControllerTests : BaseTest<CustomerController>
