@@ -12,8 +12,6 @@
     using Microsoft.Extensions.Logging;
     using System.Collections.Generic;
     using AppManager.Repository;
-    using Microsoft.EntityFrameworkCore;
-    using AppManager.DataContext;
 
     public class Startup
     {

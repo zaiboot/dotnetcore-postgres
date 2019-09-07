@@ -1,4 +1,4 @@
-namespace AppManager.Models
+namespace AppManager.Attributes
 {
     using System.ComponentModel.DataAnnotations;
 
