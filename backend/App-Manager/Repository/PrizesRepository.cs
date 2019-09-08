@@ -3,34 +3,29 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using AppManager.Common.JSonConverter;
 using AppManager.DTO;
+using AppManager.HttpTypedClients;
 
 namespace AppManager.Controllers
 {
     public class PrizesRepository : IPrizesRepository
     {
 
-        private readonly HttpClient client;
         private readonly IJsonConverter jsonConverter;
+        private readonly PrizesApiTypedClient prizesApiClient;
 
-        public PrizesRepository(IHttpClientFactory clientFactory, IJsonConverter jsonConverter)
+        public PrizesRepository(IJsonConverter jsonConverter, PrizesApiTypedClient prizesApiClient)
         {
-            this.client = clientFactory.CreateClient("prizes-api");
             this.jsonConverter = jsonConverter;
-            this.client.BaseAddress = new Uri("http://localhost:5000/api/Customer");
+            this.prizesApiClient = prizesApiClient;
         }
 
         public async Task<PrizeBulkCreationResult> CreatePrizes(PrizeBulkCreationRequest prizeBulkCreationRequest)
         {
-            //something can be done here to make it generic and make the code easier to maintain and 
-            // easier to unit tests. lack of time is a constraint here.
-            var request = jsonConverter.SerializeObject(prizeBulkCreationRequest);
-            var response = await this.client.PostAsJsonAsync(string.Empty, request);
-            var result = new PrizeBulkCreationResult()
-            {
-                Code = response.StatusCode
-            };
-            
+
+            var stringContent = await prizesApiClient.CreatePrizesBulkAsync(prizeBulkCreationRequest);
+            var result = jsonConverter.DeserializeObject<PrizeBulkCreationResult>(stringContent);
             return result;
+
         }
     }
 }
