@@ -22,14 +22,16 @@ export class PrizesService {
 
   }
 
-  getPrizes(): Observable<PrizeInfo[]> {
-
-
+  getPrizes(customerId: number): Observable<PrizeInfo[]> {
+    let url = `${this.url}/customer/${customerId}`
     return this.httpClient
-      .get<PrizeInfo[]>(this.url)
-      .pipe(map((data: any) => {
-        return data.map((p) => new PrizeInfo(Status.Unavailable, p['description'], p["amount"], p["Id"]))
-      })
+      .get<PrizeInfo[]>(url)
+        .pipe(map((data: any) => {
+          return data.map((p) => new PrizeInfo(
+              Status.Unavailable, 
+              p['description'], p["amount"], p["Id"])
+              )
+        })
       );
   }
 }

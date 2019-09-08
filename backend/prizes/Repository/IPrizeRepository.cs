@@ -9,5 +9,7 @@ namespace Prizes.Repository
         IEnumerable<Prize> GetPrizes();
         Prize GetPrize(int id);
         Task BulkInsertPrizes(IReadOnlyList<Prize> listOfPrizes);
+
+        IEnumerable<Prize> GetPrizes(int customerId);
     }
 }

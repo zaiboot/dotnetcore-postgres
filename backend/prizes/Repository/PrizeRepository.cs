@@ -30,5 +30,10 @@ namespace Prizes.Repository
         {
             return this._ctx.Prizes;
         }
+
+        public IEnumerable<Prize> GetPrizes(int customerId)
+        {
+            return this._ctx.Prizes.Where(p => p.CustomerId == customerId);
+        }
     }
 }

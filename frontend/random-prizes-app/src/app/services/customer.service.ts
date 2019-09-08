@@ -14,7 +14,7 @@ export class CustomerService {
 
   getCustomerInformation(id: number): Observable<CustomerInformation> {
 
-    let url =environment.customerApiUrl
+    let url =`${environment.customerApiUrl}/${id}`
     return this.httpClient
       .get<CustomerInformation>(url)
       .pipe(map((data: any) => {

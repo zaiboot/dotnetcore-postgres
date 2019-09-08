@@ -6,7 +6,7 @@ namespace Customers.Controllers
 {
     public interface ICustomerController
     {
-        ActionResult<Customer> Get();
+        ActionResult<Customer> Get(int id);
         Task<CustomerCreateResult> CreateCustomer(CreateCustomerRequest request);
     }
 }

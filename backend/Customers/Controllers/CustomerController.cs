@@ -31,11 +31,10 @@ namespace Customers.Controllers
 
         }
 
-        [HttpGet]
-        public ActionResult<Customer> Get()
+        [HttpGet("{id}")]
+        public ActionResult<Customer> Get(int id)
         {
-            var customerId = 1;
-            var c = _customerRepository.GetCustomerInformation(customerId);
+            var c = _customerRepository.GetCustomerInformation(id);
             //Async calls needs to be resolved later.
             // The main problem here is the mapper not being async
             return base._mappingEngine.Map<CustomerInformation, Customer>(c);

@@ -64,10 +64,11 @@ namespace Prizes.Controllers
         }
 
 
-        [HttpGet]
-        public ActionResult<List<Models.Prize>> Get()
+        [HttpGet("customer/{customerId}")]
+        public ActionResult<List<Models.Prize>> Get(int customerId)
         {
-            var result = _mappingEngine.Map<IEnumerable<Prizes.DTO.Prize>, List<Models.Prize>>(this._prizeRepository.GetPrizes());
+            var prizes = this._prizeRepository.GetPrizes(customerId);
+            var result = _mappingEngine.Map<IEnumerable<Prizes.DTO.Prize>, List<Models.Prize>>(prizes);
             return result;
         }
 

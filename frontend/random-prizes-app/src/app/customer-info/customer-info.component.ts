@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { CustomerService } from '../services/customer.service';
 import { CustomerInformation } from '../models/customer-information';
 
@@ -9,14 +9,13 @@ import { CustomerInformation } from '../models/customer-information';
 })
 export class CustomerInfoComponent implements OnInit {
 
+  @Input() public customerId:number
   private customerInfo:CustomerInformation = new CustomerInformation
 
   constructor(private service: CustomerService) { }
 
   ngOnInit() {
-    this.service.getCustomerInformation(1).subscribe(d => {
-      
-      this.customerInfo = d})
+    this.service.getCustomerInformation(this.customerId).subscribe(d => { this.customerInfo = d})
   }
 
 }
