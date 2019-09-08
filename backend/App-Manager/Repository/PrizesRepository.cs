@@ -16,7 +16,7 @@ namespace AppManager.Controllers
         {
             this.client = clientFactory.CreateClient("prizes-api");
             this.jsonConverter = jsonConverter;
-            this.client.BaseAddress = new Uri("https://localhost:5001/api/Customer");
+            this.client.BaseAddress = new Uri("http://localhost:5000/api/Customer");
         }
 
         public async Task<PrizeBulkCreationResult> CreatePrizes(PrizeBulkCreationRequest prizeBulkCreationRequest)

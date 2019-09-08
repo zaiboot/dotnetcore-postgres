@@ -15,7 +15,7 @@ namespace AppManager.Repository
         {
             this.client = clientFactory.CreateClient("customer-api");
             this.jsonConverter = jsonConverter;
-            this.client.BaseAddress = new Uri("https://localhost:6001/api/Customer");
+            this.client.BaseAddress = new Uri("http://localhost:6000/api/Customer");
         }
 
         public async Task<CustomerCreateResult> Create(CustomerCreateRequest customerCreateRequest)

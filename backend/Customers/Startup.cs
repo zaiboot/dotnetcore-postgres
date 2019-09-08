@@ -97,7 +97,6 @@
                 app.UseHsts();
             }
             app.UseCors("orgy");
-            app.UseHttpsRedirection();
             app.UseMvc();
             loggerFactory.AddLog4Net();
         }
