@@ -9,5 +9,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Random Prizes for you';
-  customerId : number = 22
+  customerId : number = 1
 }

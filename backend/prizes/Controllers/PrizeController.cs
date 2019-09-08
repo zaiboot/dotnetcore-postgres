@@ -73,9 +73,11 @@ namespace Prizes.Controllers
         }
 
         // POST api/values
-        // [HttpPut]
-        // public ActionResult SetStatus([FromBody] PrizeStatusUpdateRequest prize)
-        // {
+        [HttpPut]
+        public ActionResult SetStatus([FromBody] PrizeStatusUpdateRequest prize)
+        {
+            return Ok();
+        }
         //     ActionResult operationResult;
         //     var currentPrize = this._prizeRepository.GetPrize(prize.Id);
         //     switch (prize.NewStatus)

@@ -40,7 +40,7 @@
             services.AddCors(opt =>
             {
                 opt.AddPolicy("orgy",
-                 b => b.AllowAnyOrigin()
+                 b => { b.AllowAnyOrigin(); b.AllowAnyMethod(); b.AllowAnyHeader(); }
                 );
             });
         }
