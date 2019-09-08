@@ -7,5 +7,4 @@ namespace Prizes.Models
         public string Description { get; set; }
 
     }
-
 }

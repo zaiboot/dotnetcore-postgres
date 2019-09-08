@@ -11,6 +11,7 @@
     using System.Reflection;
     using Microsoft.Extensions.Logging;
     using System.Collections.Generic;
+    using AppManager.HttpTypedClients;
 
     public class Startup
     {
@@ -46,6 +47,8 @@
                     Assembly.GetExecutingAssembly())
                 .AsImplementedInterfaces();
             builder.RegisterType<GlobalExceptionFilter>();
+            builder.RegisterType<CustomerApiTypedClient>();
+            builder.RegisterType<PrizesApiTypedClient>();
 
             #region COMMON
             builder.Register(ctx =>

@@ -16,7 +16,7 @@ namespace AppManager.HttpTypedClients
         public PrizesApiTypedClient(IHttpClientFactory clientFactory, IJsonConverter jsonConverter) : base(clientFactory, "prizes-api", jsonConverter)
         {
             this.client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            this.client.BaseAddress = new Uri("http://localhost:5000/api/Prizes"); //get this from config file
+            this.client.BaseAddress = new Uri("http://localhost:5000/api/Prize"); //get this from config file
 
         }
 

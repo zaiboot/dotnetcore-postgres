@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Prizes.DataContext;
 using Prizes.DTO;
 
@@ -12,6 +13,12 @@ namespace Prizes.Repository
         public PrizeRepository(PrizesDataContext ctx)
         {
             this._ctx = ctx;
+        }
+
+        public async Task BulkInsertPrizes(IReadOnlyList<Prize> listOfPrizes)
+        {
+            await this._ctx.Prizes.AddRangeAsync(listOfPrizes);
+            await this._ctx.SaveChangesAsync();
         }
 
         public Prize GetPrize(int id)

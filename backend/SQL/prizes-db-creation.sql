@@ -9,7 +9,7 @@ CREATE TABLE prize_customer(
     prizename VARCHAR(100) NOT NULL, 
     customerId INT NOT NULL, --We are using microservices so this data is not supposed to be validated by the DB but the app itself
     amount REAL NOT NULL DEFAULT 0, 
-    prize_status StatusEnum DEFAULT 'NOT_INITIALIZED'
+    prize_status VARCHAR(100) DEFAULT 'NOT_INITIALIZED'
 );
 
 INSERT INTO prize_customer(amount, prizename, customerId) values(100, 'prize10',1);
