@@ -4,6 +4,7 @@ using Customers.Repository;
 using Customers.Repository.DTO;
 using Customers.Api.Mapping;
 using Customers.Models;
+using System.Threading.Tasks;
 
 namespace Customers.Controllers
 {
@@ -17,15 +18,26 @@ namespace Customers.Controllers
         {
             _customerRepository = customerRepository;
         }
-        
+
+        public async Task<CustomerCreateResult> CreateCustomer(CreateCustomerRequest request)
+        {
+            var newCustomer = await _customerRepository.CreateCustomerAsync(request);
+            var result = new CustomerCreateResult
+            {
+                CustomerId = newCustomer.Id
+            };
+            return result;
+
+        }
+
         [HttpGet]
         public ActionResult<Customer> Get()
         {
-            var customerId = 1;            
+            var customerId = 1;
             var c = _customerRepository.GetCustomerInformation(customerId);
             //Async calls needs to be resolved later.
             // The main problem here is the mapper not being async
-            return base._mappingEngine.Map<CustomerInformation,Customer>(c);
+            return base._mappingEngine.Map<CustomerInformation, Customer>(c);
         }
 
     }

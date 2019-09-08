@@ -22,6 +22,7 @@ namespace AppManager.Repository
         {
             var request = jsonConverter.SerializeObject(customerCreateRequest);
             var response = await this.client.PostAsJsonAsync(string.Empty, request);
+            response
             CustomerCreateResult result = new CustomerCreateResult()
             {
                 Code = response.StatusCode
