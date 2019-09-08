@@ -17,6 +17,7 @@ namespace Prizes.DataContext
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            
             //builder.ForNpgsqlHasEnum<StatusEnum>();
             //builder.ForNpgsqlHasEnum("statusenum", Enum.GetNames(typeof(StatusEnum)));
         }

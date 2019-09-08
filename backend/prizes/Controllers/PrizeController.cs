@@ -38,7 +38,7 @@ namespace Prizes.Controllers
                     Amount = request.DistributionPerPrize,
                     Name = $"Name = {i}",
                     CustomerId = request.CustomerId,
-                    PrizeStatus = StatusEnum.NOT_INITIALIZED.ToString()
+                    Status = StatusEnum.NOT_INITIALIZED
                 };
 
                 listOfPrizes.Add(p);

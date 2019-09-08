@@ -37,7 +37,7 @@ namespace AppManager.Controllers
             };
 
             //create customer
-            await _customerRepository.Create(customerCreateRequest).ContinueWith(async a =>
+             var taskResult = await _customerRepository.Create(customerCreateRequest).ContinueWith(async a =>
             {
                 var newCustomer = a.Result;
                 var distributionPerPrize = request.TotalAmount / request.NumberOfPrizes;
@@ -48,15 +48,21 @@ namespace AppManager.Controllers
                     TotalPrizes = request.NumberOfPrizes,
                     DistributionPerPrize = distributionPerPrize
                 };
-                 //now the desicion comes here.
+
+                 //now the desicion to make here.
                  // Do we want to create a list with {NumberOfPrizes} length or
                  // delegate this to the prizes API. 
 
                  //to avoid blocking the current API we will delegate this to the prizes API. 
                  var prizesBulkCreationResponse = await _prizesRepository.CreatePrizes(prizeBulkCreationRequest);
+                 return result;
                 
             });
 
+            if (!taskResult.IsFaulted)
+            {
+                result = Ok();
+            }
             
             return result;
         }
