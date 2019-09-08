@@ -37,9 +37,9 @@ namespace AppManager.Controllers
             };
 
             //create customer
-             var taskResult = await _customerRepository.Create(customerCreateRequest).ContinueWith(async a =>
+             var taskResult = await _customerRepository.Create(customerCreateRequest).ContinueWith(async taskResult =>
             {
-                var newCustomer = a.Result;
+                var newCustomer = taskResult.Result;
                 var distributionPerPrize = request.TotalAmount / request.NumberOfPrizes;
                  //create prizes 
                  var prizeBulkCreationRequest = new PrizeBulkCreationRequest
@@ -55,7 +55,6 @@ namespace AppManager.Controllers
 
                  //to avoid blocking the current API we will delegate this to the prizes API. 
                  var prizesBulkCreationResponse = await _prizesRepository.CreatePrizes(prizeBulkCreationRequest);
-                 return result;
                 
             });
 
