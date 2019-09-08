@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Customers.Repository.DTO
@@ -9,6 +10,8 @@ namespace Customers.Repository.DTO
     [Table("customer")]
     public class CustomerInformation
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Key]
         //columns have to be applied this as well
         [Column("id")]
         public int Id { get; set; }

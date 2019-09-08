@@ -33,7 +33,7 @@ namespace AppManager.Controllers
 
             var customerCreateRequest = new CustomerCreateRequest
             {
-                Name = request.CustomerName
+                CustomerName = request.CustomerName
             };
 
             //create customer

@@ -17,11 +17,13 @@ namespace Customers.Repository
             this.context = context;
             this.mappingEngine = mappingEngine;
         }
+        
 
         public async Task<CustomerInformation> CreateCustomerAsync(CreateCustomerRequest request)
         {
             var newCustomerRequest = mappingEngine.Map<CreateCustomerRequest, CustomerInformation>(request);
             var newCustomer = await this.context.Customer.AddAsync(newCustomerRequest);
+            await this.context.SaveChangesAsync();
             return newCustomer.Entity;
         }
 

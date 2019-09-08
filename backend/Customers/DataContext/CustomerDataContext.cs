@@ -9,6 +9,13 @@ namespace Customers.DataContext
         {
         }
 
-        public DbSet<CustomerInformation> Customer { get; set; }  
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            // modelBuilder.ForNpgsqlUseSequenceHiLo();
+            // modelBuilder.Entity<CustomerInformation>()
+            //     .HasKey( c => c.Id);
+        }
+
+        public DbSet<CustomerInformation> Customer { get; set; }
     }
 }

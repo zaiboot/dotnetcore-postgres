@@ -18,7 +18,8 @@ namespace Customers.Controllers
         {
             _customerRepository = customerRepository;
         }
-
+        
+        [HttpPost]
         public async Task<CustomerCreateResult> CreateCustomer(CreateCustomerRequest request)
         {
             var newCustomer = await _customerRepository.CreateCustomerAsync(request);
