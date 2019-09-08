@@ -11,5 +11,6 @@ namespace Prizes.Repository
         Task BulkInsertPrizes(IReadOnlyList<Prize> listOfPrizes);
 
         IEnumerable<Prize> GetPrizes(int customerId);
+        Task MarkOneAsAvailable(Prize prize);
     }
 }

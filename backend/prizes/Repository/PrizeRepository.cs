@@ -33,7 +33,15 @@ namespace Prizes.Repository
 
         public IEnumerable<Prize> GetPrizes(int customerId)
         {
-            return this._ctx.Prizes.Where(p => p.CustomerId == customerId);
+            return this._ctx.Prizes.Where(p => p.CustomerId == customerId).OrderBy( o => o.Id);
+        }
+
+        public async Task MarkOneAsAvailable(Prize prize)
+        {
+            this._ctx.Prizes.First( p => prize.Id == p.Id)
+                .Status = StatusEnum.AVAILABLE;
+            await this._ctx.SaveChangesAsync();
+
         }
     }
 }

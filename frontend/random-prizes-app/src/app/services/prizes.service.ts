@@ -28,8 +28,8 @@ export class PrizesService {
       .get<PrizeInfo[]>(url)
         .pipe(map((data: any) => {
           return data.map((p) => new PrizeInfo(
-              Status.Unavailable, 
-              p['description'], p["amount"], p["Id"])
+              p['status'], 
+              p['description'], p["amount"], p["id"])
               )
         })
       );

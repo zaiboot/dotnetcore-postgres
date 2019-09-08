@@ -11,7 +11,6 @@
     using System.Reflection;
     using Microsoft.Extensions.Logging;
     using System.Collections.Generic;
-    using Microsoft.Extensions.Options;
     using Microsoft.EntityFrameworkCore;
     using Prizes.DataContext;
 
@@ -29,7 +28,13 @@
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc()
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
+                .AddJsonOptions(options =>
+                                {
+                                    options.SerializerSettings.Converters.Add(new Newtonsoft.Json.Converters.StringEnumConverter());
+                                    options.SerializerSettings.NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore;
+                                });
             services.AddOptions();
             services.AddDbContextPool<PrizesDataContext>(options =>
             {
@@ -40,7 +45,7 @@
             services.AddCors(opt =>
             {
                 opt.AddPolicy("orgy",
-                 b => { b.AllowAnyOrigin(); b.AllowAnyMethod(); b.AllowAnyHeader(); }
+                 b => { b.AllowAnyOrigin(); b.AllowAnyMethod(); b.AllowAnyHeader(); }
                 );
             });
         }
@@ -58,7 +63,7 @@
             builder.RegisterType<GlobalExceptionFilter>();
 
             #region COMMON
-           
+
             builder.Register(ctx =>
             {
                 var logger = ctx.Resolve<ILogger<MappingEngine>>();

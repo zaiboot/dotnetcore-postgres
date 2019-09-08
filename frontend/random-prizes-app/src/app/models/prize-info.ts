@@ -1,8 +1,8 @@
 export enum Status {
-    Missed,
-    Available,
-    Unavailable,
-    Unknown
+    AVAILABLE ="AVAILABLE", 
+    NOT_AVAILABLE="NOT_AVAILABLE", 
+    MISSED ="MISSED", 
+    NOT_INITIALIZED ="NOT_INITIALIZED"
   }
   
 export class PrizeInfo {
@@ -12,10 +12,10 @@ export class PrizeInfo {
     }
 
     SetAvailable(){
-        this.status = Status.Available
+        this.status = Status.AVAILABLE
     }
 
     IsAvailable () {
-        return this.status === Status.Available
+        return this.status === Status.AVAILABLE
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -65,9 +66,18 @@ namespace Prizes.Controllers
 
 
         [HttpGet("customer/{customerId}")]
-        public ActionResult<List<Models.Prize>> Get(int customerId)
+        public async Task<ActionResult<List<Models.Prize>>> GetAsync(int customerId)
         {
             var prizes = this._prizeRepository.GetPrizes(customerId);
+            var firstPrize = prizes.First();
+            if (firstPrize.Status != StatusEnum.AVAILABLE)
+            {
+                await this._prizeRepository.MarkOneAsAvailable(firstPrize);
+
+                //ideally we shouldn't need to do this but to to be sure, I think we will do it.
+                firstPrize.Status = StatusEnum.AVAILABLE;
+
+            }
             var result = _mappingEngine.Map<IEnumerable<Prizes.DTO.Prize>, List<Models.Prize>>(prizes);
             return result;
         }
