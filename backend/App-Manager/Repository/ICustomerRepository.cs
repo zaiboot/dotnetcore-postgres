@@ -1,9 +1,10 @@
-using AppManager.Repository.DTO;
+using System.Threading.Tasks;
+using AppManager.DTO;
 
 namespace AppManager.Repository
 {
     public interface ICustomerRepository
     {
-        CustomerInformation GetCustomerInformation(int customerId);
+        Task<CustomerCreateResult> Create(CustomerCreateRequest customerCreateRequest);
     }
 }

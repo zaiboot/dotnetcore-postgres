@@ -3,6 +3,9 @@ using Microsoft.Extensions.Logging;
 using AppManager.Repository;
 using AppManager.Api.Mapping;
 using AppManager.Models;
+using AppManager.DTO;
+using System.Threading.Tasks;
+using System.Net;
 
 namespace AppManager.Controllers
 {
@@ -11,15 +14,52 @@ namespace AppManager.Controllers
     public class AppController : AppControllerBase, IAppController
     {
         private readonly ICustomerRepository _customerRepository;
+        private readonly IPrizesRepository _prizesRepository;
 
-        public AppController(IMappingEngine mappingEngine, ILogger<AppControllerBase> logger, ICustomerRepository customerRepository) : base(mappingEngine, logger)
+        public AppController(IMappingEngine mappingEngine, ILogger<AppControllerBase> logger,
+            ICustomerRepository customerRepository, IPrizesRepository prizesRepository) : base(mappingEngine, logger)
         {
             _customerRepository = customerRepository;
+            _prizesRepository = prizesRepository;
         }
         [HttpPost]
-        public ActionResult InitPromotion(PromotionRequest request)
+        public async Task<ActionResult> InitPromotionAsync(PromotionRequest request)
         {
-            
+
+            //var result = Created(??); 
+            //The correct status code will be 201 ( created ) however we need to build a url
+            // which stores the result of the method. This is out of scope but we can modify this later.
+            var result = StatusCode(500);
+
+            var customerCreateRequest = new CustomerCreateRequest
+            {
+                Name = request.CustomerName
+            };
+
+            //create customer
+            var createCustomerResult = await _customerRepository.Create(customerCreateRequest);
+            if (createCustomerResult.Code == HttpStatusCode.OK)
+            {
+
+                var distributionPerPrize = request.TotalAmount / request.NumberOfPrizes;
+                //create prizes 
+                var prizeBulkCreationRequest = new PrizeBulkCreationRequest
+                {
+                    CustomerId = createCustomerResult.CustomerId,
+                    TotalPrizes = request.NumberOfPrizes,
+                    DistributionPerPrize = distributionPerPrize
+                };
+                //now the desicion comes here.
+                // Do we want to create a list with {NumberOfPrizes} length or
+                // delegate this to the prizes API. 
+
+                //to avoid blocking the current API we will delegate this to the prizes API. 
+                var prizesBulkCreationResponse = await _prizesRepository.CreatePrizes(prizeBulkCreationRequest);
+                if (prizesBulkCreationResponse.Code  == HttpStatusCode.OK){
+                    result = Ok();
+                }
+            }
+            return result;
         }
     }
 }

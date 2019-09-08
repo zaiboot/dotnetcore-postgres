@@ -11,7 +11,6 @@
     using System.Reflection;
     using Microsoft.Extensions.Logging;
     using System.Collections.Generic;
-    using AppManager.Repository;
 
     public class Startup
     {
@@ -21,8 +20,6 @@
         {
             Configuration = configuration;
         }
-
-
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -35,6 +32,7 @@
                  b => b.AllowAnyOrigin()
                 );
             });
+            services.AddHttpClient();
         }
 
         public void ConfigureContainer(ContainerBuilder builder)
@@ -48,16 +46,6 @@
                     Assembly.GetExecutingAssembly())
                 .AsImplementedInterfaces();
             builder.RegisterType<GlobalExceptionFilter>();
-
-
-            #region REPOSITORY
-
-            builder.RegisterAssemblyTypes(
-                Assembly.GetAssembly(typeof(ICustomerRepository)))
-                .Where(t => t.Name.EndsWith("Repository"))
-                .AsImplementedInterfaces();
-
-            #endregion
 
             #region COMMON
             builder.Register(ctx =>
@@ -89,7 +77,6 @@
                 app.UseHsts();
             }
             app.UseCors("orgy");
-            app.UseHttpsRedirection();
             app.UseMvc();
             loggerFactory.AddLog4Net();
         }

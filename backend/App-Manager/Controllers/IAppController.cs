@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using AppManager.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -5,7 +6,7 @@ namespace AppManager.Controllers
 {
     public interface IAppController
     {
-        ActionResult InitPromotion(PromotionRequest request);
+        Task<ActionResult> InitPromotionAsync(PromotionRequest request);
         
     }
 }
