@@ -17,12 +17,12 @@ namespace Prizes.UnitTests
         [Fact]
         public void LoadsPrizesIsNotNull()
         {
-            Action<AutoMock, PrizeController> action = (AutoMock m, PrizeController system) =>
+            Action<AutoMock, PrizeController> action = async (AutoMock m, PrizeController system) =>
             {
                 const int PRIZES_COUNT = 10;
                 AndWhenISetUpPrizes(PRIZES_COUNT, m);
                 AndISetupAMapping<IEnumerable<Prize>, List<Models.Prize>>(m, GivenAListOfModelPrize(PRIZES_COUNT));
-                var r = system.Get();
+                var r = await system.GetAsync(1);
                 Assert.NotNull(r);
                 Assert.NotNull(r.Value);
                 var prizes = r.Value;
@@ -75,9 +75,9 @@ namespace Prizes.UnitTests
         [Fact]
         public void CustomerIsValid()
         {
-            Action<AutoMock, PrizeController> action = (AutoMock m, PrizeController system) =>
-            {
-                var r = system.Get();
+            Action<AutoMock, PrizeController> action = async ( m, system) =>
+            {                
+                var r = await system.GetAsync(1);
                 Assert.NotNull(r);
                 Assert.NotNull(r.Value);
                 var prizes = r.Value;

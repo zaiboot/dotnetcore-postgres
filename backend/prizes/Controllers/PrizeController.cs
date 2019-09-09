@@ -69,7 +69,7 @@ namespace Prizes.Controllers
         public async Task<ActionResult<List<Models.Prize>>> GetAsync(int customerId)
         {
             var prizes = this._prizeRepository.GetPrizes(customerId);
-            var firstPrize = prizes.First();
+            var firstPrize = prizes.First( p => p.Status != StatusEnum.AVAILABLE);
             if (firstPrize.Status != StatusEnum.AVAILABLE)
             {
                 await this._prizeRepository.MarkOneAsAvailable(firstPrize);
@@ -83,10 +83,19 @@ namespace Prizes.Controllers
         }
 
         // POST api/values
-        [HttpPut]
-        public ActionResult SetStatus([FromBody] PrizeStatusUpdateRequest prize)
+        [HttpPut("claim/{id}")]
+        public ActionResult ClaimPrize(int id)
         {
-            return Ok();
+            var prize = this._prizeRepository.GetPrize(id);
+            
+            if (prize.Status == StatusEnum.AVAILABLE)
+            {
+                _prizeRepository.MarkOneAsClaimedAsync(prize);
+                return Ok();
+            }
+            //if the current status is not 'AVAILABLE' then dismiss it.
+             
+            return BadRequest();
         }
         //     ActionResult operationResult;
         //     var currentPrize = this._prizeRepository.GetPrize(prize.Id);

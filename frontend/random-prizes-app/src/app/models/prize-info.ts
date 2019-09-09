@@ -2,7 +2,8 @@ export enum Status {
     AVAILABLE ="AVAILABLE", 
     NOT_AVAILABLE="NOT_AVAILABLE", 
     MISSED ="MISSED", 
-    NOT_INITIALIZED ="NOT_INITIALIZED"
+    NOT_INITIALIZED ="NOT_INITIALIZED",
+    CLAIMED ="CLAIMED"
   }
   
 export class PrizeInfo {

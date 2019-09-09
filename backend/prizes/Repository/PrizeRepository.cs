@@ -43,5 +43,13 @@ namespace Prizes.Repository
             await this._ctx.SaveChangesAsync();
 
         }
+
+        public async Task MarkOneAsClaimedAsync(Prize prize)
+        {
+          this._ctx.Prizes.First( p =>   prize.Id == p.Id)
+                .Status = StatusEnum.CLAIMED;
+            await this._ctx.SaveChangesAsync();
+        }
+
     }
 }

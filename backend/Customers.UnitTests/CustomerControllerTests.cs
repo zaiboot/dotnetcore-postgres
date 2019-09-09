@@ -48,7 +48,7 @@ namespace Customers.UnitTests
             {
                 AndWhenISetACustomer(m);
                 AndISetupAMapping<CustomerInformation, Customer>(m, GivenTheCustomer());
-                var customer = system.Get();
+                var customer = system.Get(1);
                 Assert.NotNull(customer);
             };
             this.Execute(action);
@@ -62,7 +62,7 @@ namespace Customers.UnitTests
                 AndISetupAMapping<CustomerInformation, Customer>(m, GivenTheCustomer());
                 AndWhenISetACustomer(m);
                 var expected = GivenTheDefautlCustomerInformation();
-                var customer = system.Get();
+                var customer = system.Get(1);
                 Assert.NotNull(customer);
                 Assert.NotNull(customer.Value);
                 var actual = customer.Value;

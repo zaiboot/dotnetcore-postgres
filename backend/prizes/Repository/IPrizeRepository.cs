@@ -12,5 +12,6 @@ namespace Prizes.Repository
 
         IEnumerable<Prize> GetPrizes(int customerId);
         Task MarkOneAsAvailable(Prize prize);
+        Task MarkOneAsClaimedAsync(Prize prize);         
     }
 }
